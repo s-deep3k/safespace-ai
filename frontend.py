@@ -10,5 +10,10 @@ user_input = st.chat_input("Whats on your mind? (Type 'exit' to end the session)
 if user_input:
     st.session_state.chat_history.append({"role": "user", "content": user_input})
 
-# Show response fromBackend
+    fixed_dummy_response = "I'm here to listen. Can you tell me more about how you're feeling?"
+    st.session_state.chat_history.append({"role": "assistant", "content": fixed_dummy_response})
 
+# Show response from Backend
+for msg in st.session_state.chat_history:
+    with st.chat_message(msg["role"]):
+        st.write(msg["content"])
